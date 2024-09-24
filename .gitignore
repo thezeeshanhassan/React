@@ -1,2 +1,5 @@
 Authentication/backend/node_modules/
 Authentication/frontend/node_modules/
+Routing/node_modules
+PracticeRouting/backend/node_modules
+PracticeRouting/frontend/node_modules
