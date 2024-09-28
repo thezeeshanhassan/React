@@ -1,3 +1,9 @@
+import EventForm from "../components/EventForm";
+import { useLoaderData } from "react-router-dom";
 export default function NewEventPage() {
-  return <h1>NewEvent Page</h1>;
+  return (
+    <>
+      <EventForm ></EventForm>
+    </>
+  );
 }

@@ -9,7 +9,13 @@ export default function EventsPage() {
   );
 }
 
-export async function eventLoader() {
+export async function loader() {
   const reponse = await axios.get("http://localhost:8080/events");
+  if (!reponse) {
+    throw {
+      message: "Error Occured! Something Went Wrong",
+      staus: 500,
+    };
+  }
   return reponse.data.events;
 }
