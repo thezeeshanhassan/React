@@ -1,24 +1,15 @@
-import { useEffect } from "react";
-import EventList from "../components/EventsList";
-const axios = require("axios");
-
-const event = [
-  {
-    id: "1",
-    title: "Event 1",
-    date: Date.now(),
-    image: "https://aba",
-  },
-];
+import EventsList from "../components/EventsList";
+import axios from "axios";
 
 export default function EventsPage() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios("/");
-      console.log(response);
-    };
-    fetchData();
-  }, []);
+  return (
+    <>
+      <EventsList></EventsList>
+    </>
+  );
+}
 
-  return <EventList events={event}></EventList>;
+export async function eventLoader() {
+  const reponse = await axios.get("http://localhost:8080/events");
+  return reponse.data.events;
 }
