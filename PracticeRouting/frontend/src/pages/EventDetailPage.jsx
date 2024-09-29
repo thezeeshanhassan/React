@@ -1,14 +1,12 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { redirect, useRouteLoaderData } from "react-router-dom";
 import EventItem from "../components/EventItem";
 import axios from "axios";
 
 export default function EventDetailPage() {
- 
-  const data = useLoaderData();
-   console.log(data.data.events[0]);
+  const res = useRouteLoaderData("event-detail");
   return (
     <>
-      <EventItem event={data.data.events[0]}></EventItem>
+      <EventItem event={res.data.events[0]}></EventItem>
     </>
   );
 }
@@ -26,4 +24,18 @@ export async function loader({ params }) {
   } else {
     return response;
   }
+}
+
+export async function action({ params }) {
+  console.log("Hello");
+  const id = params.eventId;
+  const response = await axios.delete(`http://localhost:8080/events/${id}`);
+
+  if (response.statusText != "OK") {
+    throw {
+      message: "Could Not Delete Event",
+      status: 500,
+    };
+  }
+  return redirect("/events");
 }
